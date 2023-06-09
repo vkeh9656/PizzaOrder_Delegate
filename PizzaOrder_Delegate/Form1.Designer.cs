@@ -182,6 +182,7 @@
             this.btnOrder.TabIndex = 4;
             this.btnOrder.Text = "주문하기";
             this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // lboxOrder
             // 
