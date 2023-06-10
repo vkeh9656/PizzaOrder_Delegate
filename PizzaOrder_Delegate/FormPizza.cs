@@ -16,7 +16,10 @@ namespace PizzaOrder_Delegate
     {
         public delegate int delePizzaComplete(string strResult, int iTime);
         public event delePizzaComplete eventDelePizzaComplete; // delegate event 선언
-        
+
+        private bool bOrderComeplete = false; // 제작이 완료되었는지 확인하는 Flag
+
+        public bool BOrderComeplete { get => bOrderComeplete; set => bOrderComeplete = value; }
 
         public FormPizza()
         {
@@ -30,6 +33,7 @@ namespace PizzaOrder_Delegate
 
         public void PizzaCheck(Dictionary<string, int> dPizzaOrder)
         {
+            BOrderComeplete = false;
             int iTotalTime = 0;
 
             foreach (KeyValuePair<string, int> oOrder in dPizzaOrder)
@@ -91,6 +95,8 @@ namespace PizzaOrder_Delegate
             }
 
             int iRet = eventDelePizzaComplete("Pizza가 완료되었습니다.", iTotalTime);
+
+            BOrderComeplete = true;
 
             lboxMake.Items.Add("------------------------");
             if (iRet == 0)
